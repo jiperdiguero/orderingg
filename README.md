@@ -1,4 +1,6 @@
 # Ordering
+# Grupo 5 
+# Julián Perdiguero, Santiago Clausen, Ezequiel Ruiz Peña
 
 Aplicación utilizada en la cursada 2018 de Ingenieria de Software. UTN-FRLP
 
