@@ -77,7 +77,7 @@
                     <td>Precio unitario</td>
                     <td>Cantidad</td>
                     <td>Precio total</td>
-		    <td>Botones</td>
+		            <td>Botones</td>
                 </tr>
             </thead>
             <tbody>
@@ -88,7 +88,8 @@
                         <td>{{ price }}</td>
                         <td>{{ quantity }}</td>
                         <td>{{ totalPrice }}</td>
-			<td><input type="button" value="Editar"></td>
+			            <td><input type="button" value="Editar" class="button">
+                            <button class="button is-danger"><span class="icon"><i class="fas fa-trash-alt"></i></span><span>Borrar</span></button></td>
                     </tr>
                 {{/ each }}
             </tbody>
