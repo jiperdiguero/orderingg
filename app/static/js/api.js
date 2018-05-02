@@ -75,7 +75,8 @@ const API = (function () {
     }
     
     function deleteProduct(productId){
-  
+        const data = JSON.stringify({ product: productId })
+
       return fetch(`/order/1/product/${ productId }`,
             {
                 method: 'DELETE',
@@ -83,6 +84,7 @@ const API = (function () {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
+                body: data
             }
         ).then(function toJson(r) {
             return r.json();
