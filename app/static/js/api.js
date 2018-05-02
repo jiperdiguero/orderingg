@@ -73,12 +73,28 @@ const API = (function () {
             return r.json();
         });
     }
+    
+    function deleteProduct(productId){
+  
+      return fetch(`/order/1/product/${ productId }`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            }
+        ).then(function toJson(r) {
+            return r.json();
+        });
+    }
 
     return {
         getOrder,
         getProducts,
         getOrderProduct,
         editProduct,
-        addProduct
+        addProduct,
+        deleteProduct
     }
 })()

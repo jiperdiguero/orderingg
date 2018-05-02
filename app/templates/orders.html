@@ -89,7 +89,7 @@
                         <td>{{ quantity }}</td>
                         <td>{{ totalPrice }}</td>
 			            <td><input type="button" value="Editar" class="button">
-                            <button class="button is-danger"><span class="icon"><i class="fas fa-trash-alt"></i></span><span>Borrar</span></button></td>
+                            <button class="button is-danger" onclick=API.deleteProduct({{ id }})><span class="icon"><i class="fas fa-trash-alt"></i></span><span>Borrar</span></button></td>
                     </tr>
                 {{/ each }}
             </tbody>
