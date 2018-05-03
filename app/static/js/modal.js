@@ -10,9 +10,9 @@ const Modal = (function () {
         const saveButton = document.getElementById('save-button');
 
         $modal.classList.add('is-active');
+        
+        editButton.classList.add('is-active');
 
-        editButton.classList.add('is-hidden');
-        editTitle.classList.add('is-hidden');
     }
 
     /**
@@ -44,6 +44,9 @@ const Modal = (function () {
         $modal.querySelector('#save-button')
             .addEventListener('click', config.onAddProduct);
 
+        $modal.querySelector('#edit-button')
+            .addEventListener('click', config.onEdit);
+        
         return {
             close: close.bind(null, $modal),
             open: open.bind(null, $modal)
