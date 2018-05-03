@@ -97,7 +97,12 @@ def order_product_detail(pk_order, pk_product):
 
     if (not order_product):
         return jsonify({ 'error': 'not-found' }), 404
-
+        
+    if request.method == 'PUT':
+        new_quantity = request.get_json()['quantity']
+        order_product.quantity = new_quantity
+        db.session.commit()
+        return jsonify(order_product.serialize)
     if request.method == 'GET':
         return jsonify(order_product.serialize)
     elif request.method == 'DELETE':

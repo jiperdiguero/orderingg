@@ -88,7 +88,7 @@
                         <td>{{ price }}</td>
                         <td>{{ quantity }}</td>
                         <td>{{ totalPrice }}</td>
-			            <td style="border-bottom-width: 1px;"><button class="button is-primary"><span class="icon"><i class="far fa-edit"></i></span><span>Editar</span></button>
+			            <td style="border-bottom-width: 1px;"><button class="button is-primary" onClick="edit({ id: {{ id }}, quantity: {{ quantity }} })"><span class="icon"><i class="far fa-edit"></i></span><span>Editar</span></button>
                             <button class="button is-danger" onclick="API.deleteProduct({{ id }}); location.reload()"><span class="icon"><i class="fas fa-trash-alt"></i></span><span>Borrar</span></button></td>
                     </tr>
                 {{/ each }}

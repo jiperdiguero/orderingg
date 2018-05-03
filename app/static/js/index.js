@@ -55,7 +55,37 @@
                 }
             });
     }
+    
+    function onEdit(){
+        API.editProduct(1, state.selectedProduct , state.quantity)
+                    .then(function (r) {
+                if (r.error) {
+                    console.error(r.error);
+                } else {
+                    API.getOrder().then(function (data) {
+                        refs.table.update(data);
+                    });
 
+                    refs.modal.close();
+                }
+            });
+    }
+
+    function edit(product) {
+        const $quantity = document.querySelector('#quantity');
+        const $select = document.querySelector('#select select');
+    
+       $quantity.value = product.quantity;
+       $select.value = product.id;
+    
+       state.quantity = product.quantity;
+       state.selectedProduct = product.id;
+    
+       // Abre el modal en forma de edición;
+       refs.modal.open(edit);
+    }
+    
+    window.edit = edit;    
     /**
      * Inicializa la aplicacion
      **/
@@ -65,7 +95,8 @@
             products: state.products,
             onProductSelect: onProductSelect,
             onChangeQunatity: onChangeQunatity,
-            onAddProduct: onAddProduct
+            onAddProduct: onAddProduct,
+            onEdit: onEdit
         });
 
         // Inicializamos la tabla
@@ -78,20 +109,5 @@
     init();
     window.refs = refs;
 
-    function edit(product) {
-        const $quantity = document.querySelector('#quantity');
-        const $select = document.querySelector('#select select');
-    
-       $quantity.value = product.quantity;
-       $select.value = product.id;
-    
-       state.quantity. = product.quantity;
-       state.selectedProduct = product;
-    
-       // Abre el modal en forma de edición;
-       refs.modal.open(edit);
-    }
-    
-    window.edit = edit;
 })()
 
