@@ -77,5 +77,21 @@
 
     init();
     window.refs = refs;
+
+    function edit(product) {
+        const $quantity = document.querySelector('#quantity');
+        const $select = document.querySelector('#select select');
+    
+       $quantity.value = product.quantity;
+       $select.value = product.id;
+    
+       state.quantity. = product.quantity;
+       state.selectedProduct = product;
+    
+       // Abre el modal en forma de edición;
+       refs.modal.open(edit);
+    }
+    
+    window.edit = edit;
 })()
 
