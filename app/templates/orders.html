@@ -74,21 +74,12 @@
 		<table class="table table-striped">
             <thead>
                 <tr>
-<<<<<<< HEAD
-                    <td>ID</td>
-                    <td>Descripción</td>
-                    <td>Precio unitario</td>
-                    <td>Cantidad</td>
-                    <td>Precio total</td>
-		            <td></td>
-=======
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Precio unitario</th>
                     <th>Cantidad</th>
                     <th>Precio total</th>
                     <th></th>
->>>>>>> eb9d9361f2be5c1c001111a9e8fc0015a7e2c739
                 </tr>
             </thead>
             <tbody>
@@ -99,10 +90,6 @@
                         <td>{{ price }}</td>
                         <td>{{ quantity }}</td>
                         <td>{{ totalPrice }}</td>
-<<<<<<< HEAD
-			            <td style="border-bottom-width: 1px;"><button class="button is-primary" onClick="edit({ id: {{ id }}, quantity: {{ quantity }} })"><span class="icon"><i class="far fa-edit"></i></span><span>Editar</span></button>
-                            <button class="button is-danger" onclick="API.deleteProduct({{ id }}); location.reload()"><span class="icon"><i class="fas fa-trash-alt"></i></span><span>Borrar</span></button></td>
-=======
                         <td>
                             <button class="button is-small is-warning" onClick="refs.modal.openEdit({ id: {{ id }}, quantity: {{ quantity }} })">
                                 <i class="fa fa-edit"></i>
@@ -112,7 +99,6 @@
                                 <i class="fa fa-trash"></i>
                             </button>
                         </td>
->>>>>>> eb9d9361f2be5c1c001111a9e8fc0015a7e2c739
                     </tr>
                 {{/ each }}
             </tbody>

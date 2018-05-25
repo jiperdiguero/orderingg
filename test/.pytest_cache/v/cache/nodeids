@@ -1,0 +1,6 @@
+[
+  "test_unit2.py::OrderingTestCase::test_crear_producto",
+  "test_unit2.py::OrderingTestCase::test_create_order_product_with_negative_quantity",
+  "test_unit2.py::OrderingTestCase::test_get_order_pko_producto_pkp",
+  "test_unit2.py::OrderingTestCase::test_iniciar_sin_productos"
+]
