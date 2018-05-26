@@ -26,11 +26,6 @@ class OrderingTestCase(TestCase):
         db.drop_all()
         db.create_all()
 
-    # Destruimos la base de datos de test
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-
     def test_iniciar_sin_productos(self):
         resp = self.client.get('/product')
         data = json.loads(resp.data)
@@ -56,10 +51,22 @@ class OrderingTestCase(TestCase):
         def createOrderProduct():
             return OrderProduct(product="Silla", quantity=-1)
         self.assertRaises(ValueError, createOrderProduct)
-    
+
     def test_get_order_pko_producto_pkp(self):
-        resp=self.client.get('/order/1/product/1', content_type='application/json')
+        p=Product(name="cuchillo", price=60)
+        db.session.add(p)
+        o=Order()
+        db.session.add(o)
+        op=OrderProduct(order_id = 1, product_id = 1, product= p, quantity=25)
+        db.session.add(op)
+        db.session.commit()
+        resp=self.client.get('/order/1/product/1')
         self.assert200(resp, "No existe orden y/o producto")
+
+    # Destruimos la base de datos de test
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
 
 if __name__ == '__main__':
     unittest.main()

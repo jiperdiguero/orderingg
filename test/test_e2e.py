@@ -39,6 +39,12 @@ class Ordering(LiveServerTestCase):
         db.session.remove()
         db.drop_all()
         self.driver.close()
+    
+    def selerium_control_bug_cant_negativa(self):
+        self.driver = webdriver.Chrome()
+        driver.get("http://127.0.0.1:5000")
+        assert "Lista de compra" in driver.h1
+
 
 if __name__ == "__main__":
     unittest.main()

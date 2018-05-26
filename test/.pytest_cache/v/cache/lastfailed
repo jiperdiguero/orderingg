@@ -4,7 +4,6 @@
   "test_orderproduct.py::OrderingTestCase::test_iniciar_sin_productos": true,
   "test_orderproduct2.py::OrderingTestCase::test_crear_producto": true,
   "test_unit.py::OrderingTestCase::test_create_order_product_with_negative_quantity": true,
-  "test_unit.py::OrderingTestCase::test_get_order_pko_producto_pkp": true,
   "test_unit2.py::OrderingTestCase::test_create_order_product_with_negative_quantity": true,
   "test_unit2.py::OrderingTestCase::test_get_order_pko_producto_pkp": true
 }
