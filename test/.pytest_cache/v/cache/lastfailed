@@ -1,5 +1,4 @@
 {
-  "test_e2e.py::Ordering::test_title": true,
   "test_orderproduct.py::OrderingTestCase::test_crear_producto": true,
   "test_orderproduct.py::OrderingTestCase::test_iniciar_sin_productos": true,
   "test_orderproduct2.py::OrderingTestCase::test_crear_producto": true,
