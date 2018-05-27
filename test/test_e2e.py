@@ -85,8 +85,21 @@ class Ordering(unittest.TestCase):
         guardar_button.click()
         negado_guardar_button = driver.find_element_by_id('save-button')
         self.assertFalse(negado_guardar_button.is_enabled(), "No puede haber productos repetidos.")
-
-
+    
+    def test_borrar(self)
+        o=Order(id=1)
+        db.session.add(o)
+        p=Product(id=1, name='Individual', price=50)
+        db.session.add(p)
+        op=OrderProduct(order_id=1, product_id=1, product=p, quantity=25)
+        db.session.add(op)
+        db.session.commit()
+        driver = self.driver
+        driver.get(self.baseURL)
+        delete_product_button = driver.find_element_by_xpath('/html/body/main/div[2]/div/table/tbody/tr[1]/td[6]/button[2]')
+        delete_product_button.click()
+        self.assertRaises(NoSuchElementException, driver.find_element_by_xpath, "xpath")
+        
 if __name__ == "__main__":
     unittest.main()
 
