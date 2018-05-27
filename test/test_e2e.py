@@ -64,7 +64,29 @@ class Ordering(unittest.TestCase):
         cantidad_product.send_keys("-1")
         guardar_button = driver.find_element_by_id('save-button')
         self.assertFalse(guardar_button.is_enabled(), "Boton de guardado debe estar inhabilitado.")
- 
+
+    def test_productos_repetidos_OPCIONAL(self):
+        o=Order(id=1)
+        db.session.add(o)
+        p=Product(id=1, name='Individual', price=50)
+        db.session.add(p)
+        op=OrderProduct(order_id=1, product_id=1, product=p, quantity=25)
+        db.session.add(op)
+        db.session.commit()
+        driver = self.driver
+        driver.get(self.baseURL)
+        add_product_button = driver.find_element_by_xpath('/html/body/main/div[1]/div/button')
+        add_product_button.click()
+        select_product = Select(driver.find_element_by_id('select-prod'))
+        select_product.select_by_visible_text("Individual")
+        cantidad_product = driver.find_element_by_id('quantity')
+        cantidad_product .send_keys("1")
+        guardar_button = driver.find_element_by_id('save-button')
+        guardar_button.click()
+        negado_guardar_button = driver.find_element_by_id('save-button')
+        self.assertFalse(negado_guardar_button.is_enabled(), "No puede haber productos repetidos.")
+
+
 if __name__ == "__main__":
     unittest.main()
 
