@@ -2,8 +2,8 @@ import unittest
 import os
 import time
 import threading
-
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
 
 from app import create_app, db
 from app.models import Product, Order, OrderProduct
@@ -48,12 +48,23 @@ class Ordering(unittest.TestCase):
 
     def tearDown(self):
         self.driver.get('http://localhost:5000/shutdown')
-
         db.session.remove()
         db.drop_all()
         self.driver.close()
         self.app_context.pop()
 
+    def test_cantidad_negativa(self):
+        driver = self.driver
+        driver.get(self.baseURL)
+        add_product_button = driver.find_element_by_xpath('/html/body/main/div[1]/div/button')
+        add_product_button.click()
+        select_product = Select(driver.find_element_by_id('select-prod'))
+        select_product.select_by_visible_text("Silla")
+        cantidad_product = driver.find_element_by_id('quantity')
+        cantidad_product.send_keys("-1")
+        guardar_button = driver.find_element_by_id('save-button')
+        self.assertFalse(guardar_button.is_enabled(), "Boton de guardado debe estar inhabilitado.")
+ 
 if __name__ == "__main__":
     unittest.main()
 

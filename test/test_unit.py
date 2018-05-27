@@ -63,13 +63,6 @@ class OrderingTestCase(TestCase):
         resp=self.client.get('/order/1/product/1')
         self.assert200(resp, "No existe orden y/o producto")
 
-    def test_get_order_OPCIONAL(self):
-        orden=Order()
-        db.session.add(orden)
-        db.session.commit()
-        resp=self.client.get('/order/1')
-        self.assert200(resp, "No existe orden")
-
     # Destruimos la base de datos de test
     def tearDown(self):
         db.session.remove()
