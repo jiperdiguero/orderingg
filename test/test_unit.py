@@ -69,6 +69,17 @@ class OrderingTestCase(TestCase):
         db.session.commit()
         resp=self.client.get('/order/1')
         self.assert200(resp, "No existe orden")
+        
+    def test_delete(self):
+        p=Product(id=1, name="Heladera", price=200)
+        db.session.add(p)
+        o=Order(id=1)
+        db.session.add(o)
+        op=OrderProduct(order_id = 1, product_id = 1, product= p, quantity=2)
+        db.session.add(op)
+        db.session.commit()
+        resp = self.client.delete('order/1/product/1')
+        self.assert200(resp, "Fallo el delete")
 
     # Destruimos la base de datos de test
     def tearDown(self):
