@@ -81,6 +81,15 @@ class OrderingTestCase(TestCase):
         resp = self.client.delete('order/1/product/1')
         self.assert200(resp, "Fallo el delete")
 
+    def test_nombre_vacio(self):
+        data = {
+            'name': '',
+            'price': 200
+        }
+        resp = self.client.post('/product', data=json.dumps(data), content_type='application/json')
+        assert resp != 200, 'Fallo el test se agrego un producto sin nombre'
+        
+        
     # Destruimos la base de datos de test
     def tearDown(self):
         db.session.remove()

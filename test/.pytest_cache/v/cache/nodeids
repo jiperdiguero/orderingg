@@ -4,5 +4,6 @@
   "test_unit.py::OrderingTestCase::test_delete",
   "test_unit.py::OrderingTestCase::test_get_order_OPCIONAL",
   "test_unit.py::OrderingTestCase::test_get_order_pko_producto_pkp",
-  "test_unit.py::OrderingTestCase::test_iniciar_sin_productos"
+  "test_unit.py::OrderingTestCase::test_iniciar_sin_productos",
+  "test_unit.py::OrderingTestCase::test_nombre_vacio"
 ]
