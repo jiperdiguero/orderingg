@@ -89,7 +89,6 @@ class OrderingTestCase(TestCase):
         resp = self.client.post('/product', data=json.dumps(data), content_type='application/json')
         assert resp != 200, 'Fallo el test se agrego un producto sin nombre'
         
-        
     # Destruimos la base de datos de test
     def tearDown(self):
         db.session.remove()
