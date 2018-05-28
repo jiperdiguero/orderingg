@@ -92,6 +92,17 @@ class OrderingTestCase(TestCase):
         product = json.loads(r.data)
         self.assertTrue(product['totalPrice'] == 1000, "Fallo el calcularTotales")
 
+    def test_opcional_cantidad_negativa(self):
+        o = Order(id=1)
+        db.session.add (o)
+        p = Product(id=1, name='Silla', price=100)
+        db.session.add(p)
+        orderProduct = OrderProduct(order_id=1, product_id=1, quantity=-10, product=p)
+        db.session.add(orderProduct)
+        db.session.commit()
+        r = self.client.put('order/1/product/1')
+        self.assert200(r, "el valor de cantidad debe ser positivo" ) 
+                
     def test_get_order_OPCIONAL(self):
         orden=Order()
         db.session.add(orden)
