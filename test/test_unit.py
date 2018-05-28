@@ -63,6 +63,35 @@ class OrderingTestCase(TestCase):
         resp=self.client.get('/order/1/product/1')
         self.assert200(resp, "No existe orden y/o producto")
 
+    def test_order_pko_producto_pkp_put(self):
+        o = Order(id=1)
+        db.session.add(o)
+        p = Product(id= 1, name= 'Silla', price= 500)
+        db.session.add(p)
+        oProduct = OrderProduct(order_id= 1, product_id= 1, quantity=1, product=p)
+        db.session.add(oProduct)
+        db.session.commit()
+        data = {
+           'quantity': 15
+           }
+            
+        self.client.put('order/1/product/1', data=json.dumps(data), content_type='application/json')
+       
+        produc = OrderProduct.query.all()[0]
+        self.assertTrue(produc.quantity == 15, "Fallo el PUT")
+
+    def test_calcular_totales(self):
+        o = Order(id=1)
+        db.session.add(o)
+        p = Product(id=1, name='Mesa', price=200)
+        db.session.add(p)
+        orderProduct = OrderProduct(order_id=1, product_id=1, quantity=5, product=p)
+        db.session.add(orderProduct)
+        db.session.commit()
+        r = self.client.get('order/1/product/1')
+        product = json.loads(r.data)
+        self.assertTrue(product['totalPrice'] == 1000, "Fallo el calcularTotales")
+
     def test_get_order_OPCIONAL(self):
         orden=Order()
         db.session.add(orden)
