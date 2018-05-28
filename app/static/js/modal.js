@@ -99,15 +99,6 @@ const Modal = (function () {
 
         $edit.addEventListener('click', config.onEditProduct);
 
-<<<<<<< HEAD
-        $modal.querySelector('#edit-button')
-            .addEventListener('click', config.onEdit);
-        
-        return {
-            close: close.bind(null, $modal),
-            open: open.bind(null, $modal)
-        }
-=======
         const modal = {
             $modal,
             $select,
@@ -165,7 +156,6 @@ const Modal = (function () {
      **/
     function close() {
         this.$modal.classList.remove('is-active');
->>>>>>> eb9d9361f2be5c1c001111a9e8fc0015a7e2c739
     }
 
     return {
