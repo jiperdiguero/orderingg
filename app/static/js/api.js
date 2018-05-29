@@ -4,7 +4,7 @@ const API = (function () {
      *
      * @param {Number} orderId id de la orden
      */
-    (function getOrder(orderId) {
+    function getOrder(orderId) {
         return fetch('/order/1')
             .then(function toJson(r) {
                 return r.json();

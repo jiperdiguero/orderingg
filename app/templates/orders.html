@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<style> thead {font-weight: bold;} </style>
 </head>
 <body>
     <main class="container">
@@ -16,8 +17,8 @@
 
         <div class="columns">
             <div class="column is-12">
-                <button class="button is-primary is-pulled-right" onclick="refs.modal.open()">
-                    <span class="icon"><i class="fas fa-plus"></i></span>
+                <button class="button is-primary is-pulled-right" style="background-color: #cd0000" onclick="refs.modal.open()">
+                    <span class="icon"><i class="fas fa-cart-plus"></i></span>
                     <span>Agregar</span>
                 </button>
             </div>
@@ -37,7 +38,7 @@
                 <section class="modal-card-body">
                     <form>
                         <div class="field">
-                            <labe class="label">Seleccionar producto</labe>
+                            <label class="label">Seleccionar producto</label>
                             <div id="select" class="control"></div>
                         </div>
 
@@ -67,7 +68,7 @@
 
     <!-- Template handlebars de la tabla -->
     <script id="table-template" type="text/x-handlebars-template">
-        <table class="table is-fullwidth is-hoverable">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>

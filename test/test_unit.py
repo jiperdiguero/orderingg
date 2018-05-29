@@ -83,14 +83,15 @@ class OrderingTestCase(TestCase):
     def test_calcular_totales(self):
         o = Order(id=1)
         db.session.add(o)
-        p = Product(id=1, name='Mesa', price=200)
+        precio = 200
+        p = Product(id=1, name='Mesa', price=precio)
         db.session.add(p)
-        orderProduct = OrderProduct(order_id=1, product_id=1, quantity=5, product=p)
+        cantidad = 5
+        orderProduct = OrderProduct(order_id=1, product_id=1, quantity=cantidad, product=p)
         db.session.add(orderProduct)
         db.session.commit()
-        r = self.client.get('order/1/product/1')
-        product = json.loads(r.data)
-        self.assertTrue(product['totalPrice'] == 1000, "Fallo el calcularTotales")
+        precioTotal = precio * cantidad
+        self.asserTrue(o.orderPrice == precioTotal, "Fallo el calcularTotales")
 
     def test_opcional_cantidad_negativa(self):
         o = Order(id=1)
