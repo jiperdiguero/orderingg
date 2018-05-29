@@ -100,8 +100,9 @@ class OrderingTestCase(TestCase):
         orderProduct = OrderProduct(order_id=1, product_id=1, quantity=-10, product=p)
         db.session.add(orderProduct)
         db.session.commit()
-        r = self.client.put('order/1/product/1')
-        self.assert200(r, "el valor de cantidad debe ser positivo" ) 
+        r = self.client.get('order/1/product/1')
+        self.assert200
+        (r, "el valor de cantidad debe ser positivo") 
                 
     def test_get_order_OPCIONAL(self):
         orden=Order()
