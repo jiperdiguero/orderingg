@@ -102,23 +102,28 @@ class Ordering(unittest.TestCase):
         self.assertRaises(NoSuchElementException, driver.find_element_by_xpath, "xpath")
    
     def test_existe_informacion(self):
+        o =Order(id=1)
+        db.session.add(o)
+        p = Product(id=1, name='Silla', price=50)
+        db.session.add(p)
+        cantidad = 3
+        orderProduct = OrderProduct(order_id=1, product_id=1, quantity=cantidad, product=p)
+        db.session.add(orderProduct)
+        db.session.commit()
         driver = self.driver
         driver.get(self.baseURL)
+        time.sleep(1)
         add_product_opendEdit = driver.find_element_by_xpath('//*[@id="orders"]/table[1]/tbody[1]/tr[1]/td[6]/button[1]')
         add_product_opendEdit.click()
-        add_cantidad_producto = driver.find_element_by_id('quantity')
-        self.assertTrue(add_cantidad_producto, 'lA OPCION DE EDITAR CONTIENE CAMPOS VACIOS')
-        add_product_cancelar = driver.find_element_by_xpath('//*[@id="modal"]/div[2]/footer[1]/button[3]')
-        time.sleep(5)
-        add_product_cancelar.click()
-        driver.close()
-               
-        #add_product_close = driver.find.element_by_class_name('button')
-        #for n in add_product_opendEdit:
-        #    add_product_opendEdit.click()
-        #    add_product_close.click()
-        #    time.sleep(5)
-			
+        time.sleep(1)
+        option_select_product = Select(driver.find_element_by_id('select-prod'))
+        option_select_product.select_by_visible_text("Silla")   
+        add_cantidad_productos = driver.find_element_by_xpath('//*[@id="quantity"]')
+        add_cantidad_productos.get_attribute('value')
+        self.assertTrue(option_select_product != "", 'EL CAMPO DETALLE DE PRODUCTOS NO PUEDE ESTAR VACIO')
+        self.assertTrue(add_cantidad_productos != "", 'EL CAMPO CANTIDAD DE PRODUCTOS NO PUEDE ESTAR VACIO')
+        
+
 if __name__ == "__main__":
     unittest.main()
 
