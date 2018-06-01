@@ -117,19 +117,22 @@ class OrderingTestCase(TestCase):
         db.session.add(p)
         o=Order(id=1)
         db.session.add(o)
-        op=OrderProduct(order_id = 1, product_id = 1, product= p, quantity=2)
+        op=OrderProduct(order_id = 1, product_id = 1, product=p, quantity=2)
         db.session.add(op)
         db.session.commit()
-        resp = self.client.delete('order/1/product/1')
-        self.assert200(resp, "Fallo el delete")
-
+        resp_delete=self.client.delete('order/1/product/1', content_type='application/json')
+        resp_get=self.client.get('/order/1',content_type='aplication/json')
+        data=json.loads(resp_get.data)
+        self.assertEqual(resp_delete.status, "200 OK", "Falló el delete") 
+        self.assertEqual(len(data["products"]),0, "Fallo el delete")
+        
     def test_nombre_vacio(self):
-        data = {
-            'name': '',
-            'price': 200
-        }
-        resp = self.client.post('/product', data=json.dumps(data), content_type='application/json')
-        assert resp != 200, 'Fallo el test se agrego un producto sin nombre'
+        producto=Product(id=1, name='Tenedor', price=10)
+        db.session.add(producto)
+        db.session.commit()
+        p = Product.query.all()[0]
+        self.assertFalse(p.name=="", "El nombre no debe estar vacío")
+
         
     # Destruimos la base de datos de test
     def tearDown(self):
