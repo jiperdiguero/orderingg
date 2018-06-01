@@ -127,13 +127,12 @@ class OrderingTestCase(TestCase):
         self.assertEqual(len(data["products"]),0, "Fallo el delete")
         
     def test_nombre_vacio(self):
-        producto=Product(id=1, name='Tenedor', price=10)
+        producto=Product(id=1, name='Tenedor', price=25)
         db.session.add(producto)
         db.session.commit()
-        p = Product.query.all()[0]
-        self.assertFalse(p.name=="", "El nombre no debe estar vacío")
+        p=Product.query.all()[0]
+        self.assertFalse(p.name=="","El nombre del producto no puede estar vacío")
 
-        
     # Destruimos la base de datos de test
     def tearDown(self):
         db.session.remove()
