@@ -61,7 +61,13 @@ class OrderingTestCase(TestCase):
         db.session.add(op)
         db.session.commit()
         resp=self.client.get('/order/1/product/1')
-        self.assert200(resp, "No existe orden y/o producto")
+        self.assert200(resp, "No existe orden cargada.")
+        data1=Product.query.all()
+        print(data1)
+        self.assertEqual(len(data1),1, "Error en el producto.")
+        data2=Order.query.all()
+        print(data2)
+        self.assertEqual(len(data2),1, "Erro en la orden.")
 
     def test_order_pko_producto_pkp_put(self):
         o = Order(id=1)
