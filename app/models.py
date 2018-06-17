@@ -2,6 +2,7 @@ from app import db
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 
+
 class Product(db.Model):
     """
     Clase producto
@@ -86,6 +87,7 @@ class OrderProduct(db.Model):
     @property
     def serialize(self):
         """
+        
         Transforma el objeto en un formato serializable
         :return:
         """

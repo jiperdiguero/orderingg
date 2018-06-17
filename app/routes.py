@@ -51,9 +51,10 @@ def order(pk):
 
     # Si la orden no existe, levantamos el error
     if (not order):
-        return jsonify({ 'error': 'not-found' }), 404
+        return jsonify({'error': 'not-found'}), 404
 
     return jsonify(order.serialize)
+
 
 @rest.route("/order/<pk>/product", methods=['POST'])
 def addProductToOrder(pk):
@@ -62,7 +63,7 @@ def addProductToOrder(pk):
 
     # Si la orden no existe, levantamos el error
     if (not order):
-        return jsonify({ 'error': '<order {}> not found'.format(pk) }), 404
+        return jsonify({'error': '<order {}> not found'.format(pk)}), 404
 
     product_data = request.get_json()
     product = product_data['product']
@@ -99,7 +100,7 @@ def order_product_detail(pk_order, pk_product):
     order_product = OrderProduct.query.filter(and_(OrderProduct.order_id==pk_order, OrderProduct.product_id==pk_product)).all()[0]
 
     if (not order_product):
-        return jsonify({ 'error': 'not-found' }), 404
+        return jsonify({'error': 'not-found'}), 404
 
     order_product_json = order_product.serialize
 

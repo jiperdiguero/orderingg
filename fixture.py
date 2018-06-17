@@ -4,6 +4,7 @@ from app import create_app, db
 app = create_app()
 app.app_context().push()
 
+
 def addOrders():
     orders = Order.query.all()
 
@@ -47,6 +48,7 @@ def addOrders():
 
         db.session.commit()
 
+
 def addProducts():
     products = Product.query.all()
     if not products:
@@ -59,6 +61,7 @@ def addProducts():
         p = Product(name="Individual", price=250)
         db.session.add(p)
         db.session.commit()
+
 
 if __name__ == '__main__':
     addProducts()
