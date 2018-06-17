@@ -10,6 +10,7 @@ from app.models import Product, Order, OrderProduct
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class OrderingTestCase(TestCase):
+"""Permite empezar el testeo creando un app para una base de datos"""
     def create_app(self):
         config_name = 'testing'
         app = create_app()
@@ -19,13 +20,13 @@ class OrderingTestCase(TestCase):
             TESTING=True
         )
         return app
-
-    # Creamos la base de datos de test
+"""Permite crear una base de datos para el testeo"""
+   # Creamos la base de datos de test   
     def setUp(self):
         db.session.commit()
         db.drop_all()
         db.create_all()
-
+"""Permite hacer un test para verificar si la base de datos tiene o no productos"""
     def test_iniciar_sin_productos(self):
         resp = self.client.get('/product')
         data = json.loads(resp.data)
@@ -57,7 +58,7 @@ class OrderingTestCase(TestCase):
         db.session.add(p)
         o=Order()
         db.session.add(o)
-        op=OrderProduct(order_id = 1, product_id = 1, product= p, quantity=25)
+        op=OrderProduct(order_id=1,product_id=1,product=p,quantity=25)
         db.session.add(op)
         db.session.commit()
         resp=self.client.get('/order/1/product/1')
@@ -79,10 +80,8 @@ class OrderingTestCase(TestCase):
         db.session.commit()
         data = {
            'quantity': 15
-           }
-            
+           }         
         self.client.put('order/1/product/1', data=json.dumps(data), content_type='application/json')
-       
         produc = OrderProduct.query.all()[0]
         self.assertTrue(produc.quantity == 15, "Fallo el PUT")
 
@@ -110,14 +109,14 @@ class OrderingTestCase(TestCase):
         r = self.client.get('order/1/product/1')
         self.assert200
         (r, "el valor de cantidad debe ser positivo") 
-                
+
     def test_get_order_OPCIONAL(self):
         orden=Order()
         db.session.add(orden)
         db.session.commit()
         resp=self.client.get('/order/1')
         self.assert200(resp, "No existe orden")
-        
+
     def test_delete(self):
         p=Product(id=1, name="Heladera", price=200)
         db.session.add(p)
@@ -131,7 +130,7 @@ class OrderingTestCase(TestCase):
         data=json.loads(resp_get.data)
         self.assertEqual(resp_delete.status, "200 OK", "Falló el delete") 
         self.assertEqual(len(data["products"]),0, "Fallo el delete")
-        
+
     def test_nombre_vacio(self):
         producto=Product(id=1, name='Tenedor', price=25)
         db.session.add(producto)
