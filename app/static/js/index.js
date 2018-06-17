@@ -7,9 +7,9 @@
         selectedProduct: null,
         quantity: 0,
         order: API.getOrder()
-    }
+    };
 
-    const refs = {}
+    const refs = {};
 
     /**
      * Actualiza el valor del precio total
@@ -17,7 +17,7 @@
     function updateTotalPrice() {
         try {
             const totalPrice = state.selectedProduct.price * state.quantity;
-            $totalPrice.innerHTML = `Precio total: $ ${totalPrice}`
+            $totalPrice.innerHTML = `Precio total: $ ${totalPrice}`;
         } catch (e) {
             $totalPrice.innerHTML = '';
         }
@@ -96,7 +96,7 @@
     
     function onEdit(){
         API.editProduct(1, state.selectedProduct , state.quantity)
-                    .then(function (r) {
+            .then(function (r) {
                 if (r.error) {
                     console.error(r.error);
                 } else {
@@ -113,14 +113,14 @@
         const $quantity = document.querySelector('#quantity');
         const $select = document.querySelector('#select select');
     
-       $quantity.value = product.quantity;
-       $select.value = product.id;
+        $quantity.value = product.quantity;
+        $select.value = product.id;
     
-       state.quantity = product.quantity;
-       state.selectedProduct = product.id;
+        state.quantity = product.quantity;
+        state.selectedProduct = product.id;
     
-       // Abre el modal en forma de edición;
-       refs.modal.open(edit);
+        // Abre el modal en forma de edición;
+        refs.modal.open(edit);
     }
     
     window.edit = edit;    
@@ -145,11 +145,11 @@
 
         refs.global = {
             onDeleteProduct
-        }
+        };
     }
 
     init();
     window.refs = refs;
 
-})()
+})();
 

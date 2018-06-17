@@ -13,7 +13,7 @@ const Modal = (function () {
                     config.onChangeQunatity(this.$el.value);
                 }
 
-                this.toggleError()
+                this.toggleError();
             });
 
             return this;
@@ -63,7 +63,7 @@ const Modal = (function () {
             el: '#quantity',
             onChangeQunatity: function (quantity) {
                 toggleButtons();
-                config.onChangeQunatity(quantity)
+                config.onChangeQunatity(quantity);
             }
         }, $modal);
 
@@ -110,8 +110,8 @@ const Modal = (function () {
         };
 
         modal.close = close.bind(modal),
-        modal.open = open.bind(modal)
-        modal.openEdit = openEdit.bind(modal)
+        modal.open = open.bind(modal);
+        modal.openEdit = openEdit.bind(modal);
 
         toggleButtons();
         return modal;
@@ -160,6 +160,6 @@ const Modal = (function () {
 
     return {
         init
-    }
+    };
 })();
 

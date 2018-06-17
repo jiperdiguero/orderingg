@@ -37,7 +37,7 @@ const Select = (function () {
                 select.render({
                     data,
                     onSelect: config.onSelect
-                })
+                });
             });
         } else {
             select.render(config);
@@ -57,7 +57,7 @@ const Select = (function () {
     }
 
     function enable() {
-        this.$select.removeAttribute('disabled')
+        this.$select.removeAttribute('disabled');
     }
 
     function disable() {
@@ -115,4 +115,4 @@ const Select = (function () {
     return {
         init
     };
-})()
+})();
