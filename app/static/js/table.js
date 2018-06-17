@@ -1,5 +1,5 @@
 const Table = (function () {
-    const source = document.getElementById('table-template').innerHTML;
+    const source = document.getElementById("table-template").innerHTML;
     const template = Handlebars.compile(source);
 
     /*
@@ -46,4 +46,4 @@ const Table = (function () {
     return {
         init
     };
-})()
+})();

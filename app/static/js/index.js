@@ -43,7 +43,7 @@
 
     function onEditProduct() {
         API.editProduct(1, state.selectedProduct.id, state.quantity)
-            .then(function (r) {
+            .then(function () {
                 API.getOrder().then(function (data) {
                     refs.table.update(data);
                 });
