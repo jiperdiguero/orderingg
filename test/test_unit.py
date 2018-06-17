@@ -10,7 +10,7 @@ from app.models import Product, Order, OrderProduct
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class OrderingTestCase(TestCase):
-"""Permite empezar el testeo creando un app para una base de datos"""
+    """Permite empezar el testeo creando un app para una base de datos"""
     def create_app(self):
         config_name = 'testing'
         app = create_app()
@@ -20,13 +20,13 @@ class OrderingTestCase(TestCase):
             TESTING=True
         )
         return app
-"""Permite crear una base de datos para el testeo"""
-   # Creamos la base de datos de test   
+    """Permite crear una base de datos para el testeo"""
+    # Creamos la base de datos de test   
     def setUp(self):
         db.session.commit()
         db.drop_all()
         db.create_all()
-"""Permite hacer un test para verificar si la base de datos tiene o no productos"""
+    """Permite hacer un test para verificar si la base de datos tiene o no productos"""
     def test_iniciar_sin_productos(self):
         resp = self.client.get('/product')
         data = json.loads(resp.data)
