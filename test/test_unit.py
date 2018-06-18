@@ -100,49 +100,48 @@ class OrderingTestCase(TestCase):
 
     def test_opcional_cantidad_negativa(self):
         o = Order(id=1)
-        db.session.add (o)
+        db.session.add(o)
         p = Product(id=1, name='Silla', price=100)
         db.session.add(p)
         orderProduct = OrderProduct(order_id=1, product_id=1, quantity=-10, product=p)
         db.session.add(orderProduct)
         db.session.commit()
         r = self.client.get('order/1/product/1')
-        self.assert200
-        (r, "el valor de cantidad debe ser positivo") 
+        self.assert200(r, "El valor de cantidad debe ser positivo") 
 
     def test_get_order_OPCIONAL(self):
-        orden=Order()
+        orden = Order()
         db.session.add(orden)
         db.session.commit()
-        resp=self.client.get('/order/1')
+        resp = self.client.get('/order/1')
         self.assert200(resp, "No existe orden")
 
     def test_delete(self):
-        p=Product(id=1, name="Heladera", price=200)
+        p = Product(id=1, name="Heladera", price=200)
         db.session.add(p)
-        o=Order(id=1)
+        o = Order(id=1)
         db.session.add(o)
-        op=OrderProduct(order_id = 1, product_id = 1, product=p, quantity=2)
+        op = OrderProduct(order_id=1, product_id=1, product=p, quantity=2)
         db.session.add(op)
         db.session.commit()
         resp_delete=self.client.delete('order/1/product/1', content_type='application/json')
-        resp_get=self.client.get('/order/1',content_type='aplication/json')
-        data=json.loads(resp_get.data)
+        resp_get=self.client.get('/order/1', content_type='aplication/json')
+        data = json.loads(resp_get.data)
         self.assertEqual(resp_delete.status, "200 OK", "Falló el delete") 
-        self.assertEqual(len(data["products"]),0, "Fallo el delete")
+        self.assertEqual(len(data["products"]), 0, "Fallo el delete")
 
     def test_nombre_vacio(self):
-        producto=Product(id=1, name='Tenedor', price=25)
+        producto = Product(id=1, name='Tenedor', price=25)
         db.session.add(producto)
         db.session.commit()
-        p=Product.query.all()[0]
-        self.assertFalse(p.name=="","El nombre del producto no puede estar vacío")
+        p = Product.query.all()[0]
+        self.assertFalse(p.name=="", "El nombre del producto no puede estar vacío")
 
     # Destruimos la base de datos de test
     def tearDown(self):
         db.session.remove()
         db.drop_all()
 
+
 if __name__ == '__main__':
     unittest.main()
-
