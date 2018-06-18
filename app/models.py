@@ -36,7 +36,6 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     products = relationship('OrderProduct')
 
-
     def __repr__(self):
         return '<Order {}>'.format(self.id)
 
@@ -62,6 +61,9 @@ class Order(db.Model):
             ],
             'orderPrice': self.orderPrice
         }
+    def cantProductos(self):
+        return sum([product.quantity for product in self.products])
+		
 
 class OrderProduct(db.Model):
     """
