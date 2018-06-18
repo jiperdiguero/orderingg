@@ -1,5 +1,5 @@
 (function () {
-    const $totalPrice = document.querySelector('#total-price');
+    const $totalPrice = document.querySelector("#total-price");
 
     // Estado de la aplicacion
     const state = {
@@ -19,7 +19,7 @@
             const totalPrice = state.selectedProduct.price * state.quantity;
             $totalPrice.innerHTML = `Precio total: $ ${totalPrice}`;
         } catch (e) {
-            $totalPrice.innerHTML = '';
+            $totalPrice.innerHTML = "";
         }
     }
 
@@ -85,7 +85,7 @@
         API.deleteProduct(1, productId)
             .then(function (r) {
                 if (r.error) {
-                    console.error(r.error);
+                    Console.error(r.error);
                 } else {
                     API.getOrder().then(function (data) {
                         refs.table.update(data);

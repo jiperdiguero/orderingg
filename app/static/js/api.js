@@ -1,11 +1,11 @@
-const API = (function () {
+(function () {
     /**
      * Obtiene una orden desde el backend
      *
      * @param {Number} orderId id de la orden
      */
     function getOrder(orderId) {
-        return fetch("/order/1")
+        return fetch("/order/orderId")
             .then(function toJson(r) {
                 return r.json();
             });

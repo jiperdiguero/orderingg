@@ -1,4 +1,4 @@
-const Modal = (function () {
+(function () {
 
     const Quantity = {
         /**
@@ -8,7 +8,7 @@ const Modal = (function () {
             this.$el = context.querySelector(config.el);
 
             // Nos ponemos a escuchar cambios en el input de cantidad
-            this.$el.addEventListener('input', () => {
+            this.$el.addEventListener("input", () => {
                 if (this.validate()) {
                     config.onChangeQunatity(this.$el.value);
                 }
@@ -43,7 +43,7 @@ const Modal = (function () {
          **/
         toggleError: function () {
             const $errorQuantity = this.$el.parentElement
-                .querySelector('.help');
+                .querySelector(".help");
 
             this.$el.classList.toggle('is-danger', !this.isValid);
             $errorQuantity.classList.toggle('is-hidden', this.isValid);

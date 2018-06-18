@@ -13,7 +13,7 @@
     },
     "rules": {
         "semi": 2,
-
+		"no-console": 0,
         "camelcase": 1,
         "comma-dangle": 2,
         "no-cond-assign": 2,
@@ -62,7 +62,7 @@
         "no-throw-literal": 2,
         "no-useless-call": 1,
         "yoda": 1,
-
+		
         "no-undef": 2,
         "no-unused-vars": 1,
 

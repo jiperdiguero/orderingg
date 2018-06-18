@@ -1,4 +1,4 @@
-const Select = (function () {
+(function () {
     const source = document.getElementById("select-template").innerHTML;
     const template = Handlebars.compile(source);
 
