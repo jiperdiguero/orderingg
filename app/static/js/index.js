@@ -85,7 +85,7 @@
         API.deleteProduct(1, productId)
             .then(function (r) {
                 if (r.error) {
-                    Console.error(r.error);
+                    console.error(r.error);
                 } else {
                     API.getOrder().then(function (data) {
                         refs.table.update(data);

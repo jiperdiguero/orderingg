@@ -124,10 +124,10 @@ class OrderingTestCase(TestCase):
         op = OrderProduct(order_id=1, product_id=1, product=p, quantity=2)
         db.session.add(op)
         db.session.commit()
-        resp_delete=self.client.delete('order/1/product/1', content_type='application/json')
-        resp_get=self.client.get('/order/1', content_type='aplication/json')
+        resp_delete = self.client.delete('order/1/product/1', content_type='application/json')
+        resp_get = self.client.get('/order/1', content_type='aplication/json')
         data = json.loads(resp_get.data)
-        self.assertEqual(resp_delete.status, "200 OK", "Falló el delete") 
+        self.assertEqual(resp_delete.status, "200 OK", "Falló el delete"), 
         self.assertEqual(len(data["products"]), 0, "Fallo el delete")
 
     def test_nombre_vacio(self):

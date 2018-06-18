@@ -70,8 +70,10 @@ class OrderProduct(db.Model):
     """
     Clase OrderProduct, tabla transpuesta
     """
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'),
+	primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'),
+	primary_key=True)
     product = relationship('Product')
     quantity = db.Column(db.Integer)
 

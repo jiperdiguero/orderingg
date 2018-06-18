@@ -5,7 +5,7 @@ app = create_app()
 app.app_context().push()
 
 
-def addOrders():
+def addorders():
     orders = Order.query.all()
 
     if not orders:
@@ -40,9 +40,9 @@ def addOrders():
             order = Order()
 
             for product in order_data['products']:
-                orderProduct = OrderProduct(quantity=product['quantity'])
-                orderProduct.product = Product.query.get(product['id'])
-                order.products.append(orderProduct)
+                orderproduct = Orderproduct(quantity=product['quantity'])
+                orderproduct.product = Product.query.get(product['id'])
+                order.products.append(orderproduct)
 
             db.session.add(order)
 
@@ -65,4 +65,4 @@ def addProducts():
 
 if __name__ == '__main__':
     addProducts()
-    addOrders()
+    addorders()
